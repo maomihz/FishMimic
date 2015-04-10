@@ -7,4 +7,4 @@ class
   RectFish
   Pond
   should be included in com.seancheey.data pakage
-@Auhtor: Seancheey
+@Author: Seancheey
