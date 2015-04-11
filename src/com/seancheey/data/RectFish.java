@@ -1,5 +1,6 @@
 package com.seancheey.data;
 
+
 import java.awt.Graphics;
 
 import com.seancheey.Main;
