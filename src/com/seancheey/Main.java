@@ -13,6 +13,7 @@ import com.seancheey.data.*;
 public class Main {
 	public static final String NAME = "Moving fishes";
 	public static final int WIDTH = 500, HEIGHT = 500;
+	public static int DELAY = 5;
 
 	public static void main(String[] args) {
 		// init the pond
@@ -21,13 +22,24 @@ public class Main {
 			p.getFishes().add(
 					new RectFish(10, 10, 250, 250, Math.random() * 5 - 2.5,
 							Math.random() * 5 - 2.5, p));
+		
 		// add it to a pond panel
 		PondPanel pondP = new PondPanel(p);
+		
 		// create a new JFrame and add the panel
 		JFrame f = new MainFrame(NAME);
 		f.setVisible(true);
 		f.getContentPane().add(pondP);
 	}
+	
+	// Library Functions
+	public static Color randColor() {
+		int r = (int)(Math.random() * 256);
+		int g = (int)(Math.random() * 256);
+		int b = (int)(Math.random() * 256);
+		return new Color(r, g, b);
+	}
+	
 }
 
 class MainFrame extends JFrame {
@@ -38,11 +50,12 @@ class MainFrame extends JFrame {
 
 	MainFrame(String title) {
 		super(title);
-		this.setUndecorated(true);
-		setSize(Main.WIDTH, Main.HEIGHT);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setUndecorated(false); // NOT hide title bar
+		setSize(Main.WIDTH, Main.HEIGHT); 
+		setLocationRelativeTo(null); //Center the window
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // Click x to exit program
 	}
+	
 }
 
 class PondPanel extends JPanel {
@@ -59,20 +72,27 @@ class PondPanel extends JPanel {
 		this.pond = pond;
 		setSize(Main.WIDTH, Main.HEIGHT);
 		setBackground(Color.CYAN);
+		
+		new Thread() {
+			public void run() {
+				while(true) {
+					try {
+						sleep(Main.DELAY);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					PondPanel.this.repaint();
+				}
+			}
+		}.start();
+		
 	}
 
 	@Override
-	protected void paintComponent(Graphics arg0) {
-		super.paintComponent(arg0);
-		arg0.setColor(Color.RED);
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		pond.nextMove();
-		pond.paint(arg0);
-		try {
-			Thread.sleep(2);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		this.repaint();
+		pond.paint(g);
 	}
 
 }
