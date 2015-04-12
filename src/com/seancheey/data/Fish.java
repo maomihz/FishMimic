@@ -99,7 +99,7 @@ public abstract class Fish implements Serializable {
 			return false;
 		
 		// Pond Mismatch
-		if (pond == null || another.pond == null || !pond.equals(another.pond) ) {
+		if (pond == null || another.pond == null || !pond.equals(another.pond)) {
 			return false;
 		}
 		
