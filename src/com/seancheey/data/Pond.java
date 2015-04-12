@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Pond {
-	private final int width, height;
-	private final ArrayList<Fish> fishes;
+	private final int width, height; // The pond's size
+	private final ArrayList<Fish> fishes; // Container of the pond
 
 	public Pond(int width, int height, ArrayList<Fish> fishes) {
 		super();
@@ -15,22 +15,18 @@ public class Pond {
 		this.height = height;
 		this.fishes = fishes;
 	}
-
 	public Pond(int width, int height) {
-		super();
-		this.width = width;
-		this.height = height;
-		fishes = new ArrayList<Fish>(10);
+		this(width, height, new ArrayList<Fish>(10));
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		
+		if (obj == null || getClass() != obj.getClass())
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		
 		Pond other = (Pond) obj;
 		if (fishes == null) {
 			if (other.fishes != null)
@@ -54,10 +50,6 @@ public class Pond {
 
 	public ArrayList<Fish> getFishes() {
 		return fishes;
-	}
-
-	public Iterator<Fish> getIterator() {
-		return fishes.iterator();
 	}
 
 	public void paint(Graphics g) {
