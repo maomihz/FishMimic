@@ -2,7 +2,6 @@ package com.seancheey;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-
 import com.seancheey.data.Pond;
 import com.seancheey.data.RectFish;
 

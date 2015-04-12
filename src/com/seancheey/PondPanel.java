@@ -3,6 +3,11 @@ package com.seancheey;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import com.seancheey.data.Pond;
 
 public class PondPanel extends JPanel {
@@ -12,8 +17,7 @@ public class PondPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final Pond pond;
-
-	
+	private JSlider vslider;
 	
 	public PondPanel(Pond pond) {
 		super();
@@ -35,6 +39,14 @@ public class PondPanel extends JPanel {
 
 			}
 		}.start();
+		
+		vslider = new JSlider(SwingConstants.HORIZONTAL, 0, 49, 40);
+		this.add(vslider);
+		vslider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent event) {
+				Main.DELAY = 50 - vslider.getValue();
+			}
+		});
 		
 	}
 

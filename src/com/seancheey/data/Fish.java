@@ -1,6 +1,5 @@
 package com.seancheey.data;
 
-
 import java.awt.Graphics;
 import java.io.Serializable;
 

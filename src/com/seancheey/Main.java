@@ -2,15 +2,11 @@ package com.seancheey;
 
 
 import java.awt.Color;
-import java.awt.Graphics;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-
-import com.seancheey.data.*;
 
 public class Main {
+	
+	// Program variables
 	public static final String NAME = "Moving fishes";
 	public static final int WIDTH = 500, HEIGHT = 500;
 	public static int DELAY = 5;
