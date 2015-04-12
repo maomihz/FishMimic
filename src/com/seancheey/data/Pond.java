@@ -15,31 +15,35 @@ public class Pond {
 		this.height = height;
 		this.fishes = fishes;
 	}
+	
 	public Pond(int width, int height) {
 		this(width, height, new ArrayList<Fish>(10));
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		
+		// null or not in the same class
 		if (obj == null || getClass() != obj.getClass())
 			return false;
 		
+		// Objects are identical
+		if (this == obj)
+			return true;
+		
+		// Type cast
 		Pond other = (Pond) obj;
-		if (fishes == null) {
-			if (other.fishes != null)
+		
+		if (fishes == null || other.fishes == null || !fishes.equals(other.fishes)) 
 				return false;
-		} else if (!fishes.equals(other.fishes))
+		
+		// Size mismatch
+		if (height != other.height || width != other.width)
 			return false;
-		if (height != other.height)
-			return false;
-		if (width != other.width)
-			return false;
+		
 		return true;
 	}
-
+	
+	// List of getters
 	public int getWidth() {
 		return width;
 	}
@@ -51,18 +55,21 @@ public class Pond {
 	public ArrayList<Fish> getFishes() {
 		return fishes;
 	}
-
+	
+	// Paint itself
 	public void paint(Graphics g) {
 		Iterator<Fish> i = fishes.iterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
 		}
 	}
-
+	
+	// Invoke next move
 	public void nextMove() {
 		Iterator<Fish> i = fishes.iterator();
 		while (i.hasNext()) {
 			i.next().move();
 		}
 	}
+	
 }
